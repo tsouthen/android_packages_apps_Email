@@ -37,6 +37,7 @@ public class Preferences {
     private static final String ENABLE_EXCHANGE_FILE_LOGGING = "enableExchangeFileLogging";
     private static final String DEVICE_UID = "deviceUID";
     private static final String ONE_TIME_INITIALIZATION_PROGRESS = "oneTimeInitializationProgress";
+    private static final String SUBJECT_ON_FIRST_LINE = "subjectOnFirstLine";
 
     private static Preferences preferences;
 
@@ -187,6 +188,14 @@ public class Preferences {
         mSharedPreferences.edit().putInt(ONE_TIME_INITIALIZATION_PROGRESS, progress).commit();
     }
 
+    public boolean getSubjectOnFirstLine() {
+        return mSharedPreferences.getBoolean(SUBJECT_ON_FIRST_LINE, false);
+    }
+
+    public void setSubjectOnFirstLine(boolean subjectOnFirstLine) {
+        mSharedPreferences.edit().putBoolean(SUBJECT_ON_FIRST_LINE, subjectOnFirstLine).commit();
+    }
+    
     public void save() {
     }
 

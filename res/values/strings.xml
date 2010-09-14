@@ -613,6 +613,11 @@
     <string name="misc_settings_label">Miscellaneous settings</string>
     <string name="account_settings_msg_list_on_delete">Return to message list</string>
     <string name="account_settings_msg_list_on_delete_summary">Return to message folder after deleting the message you\'re viewing.</string>
+    <string name="account_settings_use_light_theme">Use Light theme</string>
+    <string name="account_settings_use_light_theme_summary">Use the light theme (white background) for message and folder lists</string>
+    <string name="account_settings_subject_on_first_line">Subject on first line</string>
+    <string name="account_settings_subject_on_first_line_summary">Put the subject on the first line instead of the sender</string>
+    
     <!-- Title of Remove account confirmation dialog box -->
     <string name="account_delete_dlg_title">Remove account</string>
     <!-- Message of Remove account confirmation dialog box -->

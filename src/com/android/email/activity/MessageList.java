@@ -18,6 +18,7 @@ package com.android.email.activity;
 
 import com.android.email.Controller;
 import com.android.email.Email;
+import com.android.email.Preferences;
 import com.android.email.R;
 import com.android.email.Utility;
 import com.android.email.activity.setup.AccountSecurity;
@@ -1727,12 +1728,13 @@ public class MessageList extends ListActivity implements OnItemClickListener, On
             EmailContent.Account acc = EmailContent.Account.restoreAccountWithId(mContext, itemView.mAccountId); 
             chipView.setBackgroundColor(acc.getAccountColor());
 
+            boolean subjectOnFirstLine = Preferences.getPreferences(mContext).getSubjectOnFirstLine();
             TextView fromView = (TextView) view.findViewById(R.id.from);
-            String text = cursor.getString(COLUMN_DISPLAY_NAME);
+            String text = cursor.getString(subjectOnFirstLine ? COLUMN_SUBJECT: COLUMN_DISPLAY_NAME);
             fromView.setText(text);
 
             TextView subjectView = (TextView) view.findViewById(R.id.subject);
-            text = cursor.getString(COLUMN_SUBJECT);
+            text = cursor.getString(subjectOnFirstLine ? COLUMN_DISPLAY_NAME: COLUMN_SUBJECT);
             subjectView.setText(text);
 
             boolean hasInvitation =
