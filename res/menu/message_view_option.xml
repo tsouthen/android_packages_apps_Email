@@ -45,4 +45,9 @@
         android:title="@string/mark_as_unread_action"
         android:icon="@*android:drawable/ic_menu_mark"
     />
+    <item
+        android:id="@+id/select_text"
+        android:alphabeticShortcut="c"
+        android:title="@string/select_text_action"
+    />
 </menu>

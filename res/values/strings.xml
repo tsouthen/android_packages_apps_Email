@@ -129,6 +129,8 @@
     <!-- Menu item -->
     <string name="mark_as_unread_action">Mark as unread</string>
     <!-- Menu item -->
+    <string name="select_text_action">Copy text</string>
+    <!-- Menu item -->
     <string name="add_cc_bcc_action">Add Cc/Bcc</string>
     <!-- Menu item -->
     <string name="add_attachment_action">Add attachment</string>

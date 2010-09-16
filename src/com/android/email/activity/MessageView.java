@@ -687,6 +687,10 @@ public class MessageView extends Activity implements OnClickListener {
         }
     }
 
+    private void onSelectText() {
+    	if (mMessageContentView != null)
+    		mMessageContentView.emulateShiftHeld();
+    }
     /**
      * Creates a unique file in the given directory by appending a hyphen
      * and a number to the given filename.
@@ -873,6 +877,9 @@ public class MessageView extends Activity implements OnClickListener {
                onMarkAsRead(false);
                finish();
                break;
+           case R.id.select_text:
+        	   onSelectText();
+        	   break;
            default:
                return false;
        }
