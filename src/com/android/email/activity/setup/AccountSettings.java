@@ -18,6 +18,7 @@ package com.android.email.activity.setup;
 
 import com.android.email.Controller;
 import com.android.email.Email;
+import com.android.email.Preferences;
 import com.android.email.R;
 import com.android.email.activity.AccountFolderList;
 import com.android.email.activity.Welcome;

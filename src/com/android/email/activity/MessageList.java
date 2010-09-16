@@ -18,6 +18,7 @@ package com.android.email.activity;
 
 import com.android.email.Controller;
 import com.android.email.Email;
+import com.android.email.Preferences;
 import com.android.email.R;
 import com.android.email.Utility;
 import com.android.email.activity.setup.AccountSecurity;
@@ -1722,15 +1723,13 @@ public class MessageList extends ListActivity implements OnItemClickListener, On
             itemView.mSelected = mChecked.contains(Long.valueOf(itemView.mMessageId));
 
             // Load the UI
-            Preferences prefs = Preferences.getPreferences(mContext);
-            
             View chipView = view.findViewById(R.id.chip);
-            if (prefs.getDisplayColorChips()) {
+            if (Preferences.getPreferences(mContext).getDisplayColorChips()) {
                 chipView.setVisibility(View.VISIBLE);
                 EmailContent.Account acc = EmailContent.Account.restoreAccountWithId(mContext, itemView.mAccountId); 
                 chipView.setBackgroundColor(acc.getAccountColor());
             } else {
-            	chipView.setVisibility(View.GONE);
+            	chipView.setVisibility(View.INVISIBLE);
             }
 
             TextView fromView = (TextView) view.findViewById(R.id.from);

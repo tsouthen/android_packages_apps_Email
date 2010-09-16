@@ -18,6 +18,7 @@ package com.android.email.activity;
 
 import com.android.email.Controller;
 import com.android.email.Email;
+import com.android.email.Preferences;
 import com.android.email.R;
 import com.android.email.Utility;
 import com.android.email.activity.setup.AccountSettings;
@@ -708,7 +709,12 @@ public class MailboxList extends ListActivity implements OnItemClickListener, On
             
             long boxId = cursor.getLong(COLUMN_ID);
             View chipView = view.findViewById(R.id.chip);
-            chipView.setBackgroundColor(Account.restoreAccountWithId(mContext, Mailbox.restoreMailboxWithId(mContext, boxId).mAccountKey).getAccountColor());
+            if (Preferences.getPreferences(mContext).getDisplayColorChips()) {
+                chipView.setVisibility(View.VISIBLE);
+                chipView.setBackgroundColor(Account.restoreAccountWithId(mContext, Mailbox.restoreMailboxWithId(mContext, boxId).mAccountKey).getAccountColor());            
+            } else {
+            	chipView.setVisibility(View.INVISIBLE);
+            }
             
             // TODO do we use a different count for special mailboxes (total count vs. unread)
             int count = -1;

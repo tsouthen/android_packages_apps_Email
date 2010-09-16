@@ -19,6 +19,7 @@ package com.android.email.activity;
 import com.android.email.AccountBackupRestore;
 import com.android.email.Controller;
 import com.android.email.Email;
+import com.android.email.Preferences;
 import com.android.email.R;
 import com.android.email.SecurityPolicy;
 import com.android.email.Utility;
@@ -823,8 +824,12 @@ public class AccountFolderList extends ListActivity implements OnItemClickListen
 
             long accountId = cursor.getLong(Account.CONTENT_ID_COLUMN);
             View chipView = view.findViewById(R.id.chip);
-            chipView.setBackgroundColor(cursor.getInt(Account.CONTENT_COLOR_COLUMN));
-            chipView.setVisibility(View.VISIBLE);
+            if (Preferences.getPreferences(mContext).getDisplayColorChips()) {
+                chipView.setBackgroundColor(cursor.getInt(Account.CONTENT_COLOR_COLUMN));
+                chipView.setVisibility(View.VISIBLE);
+            } else {
+            	chipView.setVisibility(View.INVISIBLE);
+            }
 
             String text = cursor.getString(Account.CONTENT_DISPLAY_NAME_COLUMN);
             if (text != null) {
