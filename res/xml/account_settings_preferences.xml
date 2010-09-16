@@ -128,11 +128,6 @@
             android:summary="@string/account_settings_msg_list_on_delete_summary"
             android:defaultValue="false"/>
         <CheckBoxPreference
-            android:key="use_light_theme"
-            android:title="@string/account_settings_use_light_theme"
-            android:summary="@string/account_settings_use_light_theme_summary"
-            android:defaultValue="false"/>
-        <CheckBoxPreference
             android:key="subject_on_first_line"
             android:title="@string/account_settings_subject_on_first_line"
             android:summary="@string/account_settings_subject_on_first_line_summary"
