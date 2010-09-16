@@ -37,7 +37,8 @@ public class Preferences {
     private static final String ENABLE_EXCHANGE_FILE_LOGGING = "enableExchangeFileLogging";
     private static final String DEVICE_UID = "deviceUID";
     private static final String ONE_TIME_INITIALIZATION_PROGRESS = "oneTimeInitializationProgress";
-
+    private static final String DISPLAY_COLOR_CHIPS = "displayColorChips";
+    
     private static Preferences preferences;
 
     SharedPreferences mSharedPreferences;
@@ -187,6 +188,14 @@ public class Preferences {
         mSharedPreferences.edit().putInt(ONE_TIME_INITIALIZATION_PROGRESS, progress).commit();
     }
 
+    public boolean getDisplayColorChips() {
+        return mSharedPreferences.getBoolean(DISPLAY_COLOR_CHIPS, true);
+    }
+
+    public void setDisplayColorChips(boolean displayColorChips) {
+        mSharedPreferences.edit().putBoolean(DISPLAY_COLOR_CHIPS, displayColorChips).commit();
+    }
+    
     public void save() {
     }
 

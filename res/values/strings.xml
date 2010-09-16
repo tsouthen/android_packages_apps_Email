@@ -613,6 +613,9 @@
     <string name="misc_settings_label">Miscellaneous settings</string>
     <string name="account_settings_msg_list_on_delete">Return to message list</string>
     <string name="account_settings_msg_list_on_delete_summary">Return to message folder after deleting the message you\'re viewing.</string>
+    <string name="account_settings_display_color_chips">Display color chips</string>
+    <string name="account_settings_display_color_chips_summary">Display color \"chips\" beside messages and folders</string>
+    
     <!-- Title of Remove account confirmation dialog box -->
     <string name="account_delete_dlg_title">Remove account</string>
     <!-- Message of Remove account confirmation dialog box -->

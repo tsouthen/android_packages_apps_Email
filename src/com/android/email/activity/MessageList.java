@@ -1722,10 +1722,16 @@ public class MessageList extends ListActivity implements OnItemClickListener, On
             itemView.mSelected = mChecked.contains(Long.valueOf(itemView.mMessageId));
 
             // Load the UI
-            View chipView = view.findViewById(R.id.chip);
+            Preferences prefs = Preferences.getPreferences(mContext);
             
-            EmailContent.Account acc = EmailContent.Account.restoreAccountWithId(mContext, itemView.mAccountId); 
-            chipView.setBackgroundColor(acc.getAccountColor());
+            View chipView = view.findViewById(R.id.chip);
+            if (prefs.getDisplayColorChips()) {
+                chipView.setVisibility(View.VISIBLE);
+                EmailContent.Account acc = EmailContent.Account.restoreAccountWithId(mContext, itemView.mAccountId); 
+                chipView.setBackgroundColor(acc.getAccountColor());
+            } else {
+            	chipView.setVisibility(View.GONE);
+            }
 
             TextView fromView = (TextView) view.findViewById(R.id.from);
             String text = cursor.getString(COLUMN_DISPLAY_NAME);

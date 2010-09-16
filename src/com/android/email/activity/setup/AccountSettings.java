@@ -63,6 +63,7 @@ public class AccountSettings extends PreferenceActivity {
     private static final String PREFERENCE_SYNC_CONTACTS = "account_sync_contacts";
     private static final String PREFERENCE_SYNC_CALENDAR = "account_sync_calendar";
     private static final String PREFERENCE_MSG_LIST_ON_DELETE = "msg_list_on_delete";
+    private static final String PREFERENCE_DISPLAY_COLOR_CHIPS = "display_color_chips";
 
     // These strings must match account_settings_vibrate_when_* strings in strings.xml
     private static final String PREFERENCE_VALUE_VIBRATE_WHEN_ALWAYS = "always";
@@ -94,6 +95,7 @@ public class AccountSettings extends PreferenceActivity {
     private CheckBoxPreference mSyncCalendar;
     private CheckBoxPreference mMsgListOnDelete;
     private ColorPreference mColor;
+    private CheckBoxPreference mDisplayColorChips;
 
     /**
      * Display (and edit) settings for a specific account
@@ -242,6 +244,9 @@ public class AccountSettings extends PreferenceActivity {
         mMsgListOnDelete = (CheckBoxPreference) findPreference(PREFERENCE_MSG_LIST_ON_DELETE);
         mMsgListOnDelete.setChecked(0 != (mAccount.getFlags() & Account.FLAGS_MSG_LIST_ON_DELETE));
                 
+        mDisplayColorChips = (CheckBoxPreference) findPreference(PREFERENCE_DISPLAY_COLOR_CHIPS);
+        mDisplayColorChips.setChecked(Preferences.getPreferences(this).getDisplayColorChips());
+
         mAccountDefault = (CheckBoxPreference) findPreference(PREFERENCE_DEFAULT);
         mAccountDefault.setChecked(mAccount.mId == Account.getDefaultAccountId(this));
 
@@ -408,6 +413,8 @@ public class AccountSettings extends PreferenceActivity {
                     mAccountId, null);
         } catch (Exception e) { }
         Email.setServicesEnabled(this);
+
+        Preferences.getPreferences(this).setDisplayColorChips(mDisplayColorChips.isChecked());
     }
 
     @Override
