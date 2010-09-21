@@ -96,7 +96,6 @@ public class AccountSettings extends PreferenceActivity {
     private CheckBoxPreference mSyncCalendar;
     private CheckBoxPreference mMsgListOnDelete;
     private ColorPreference mColor;
-    private CheckBoxPreference mSubjectOnFirstLine;
 
     /**
      * Display (and edit) settings for a specific account
@@ -245,9 +244,6 @@ public class AccountSettings extends PreferenceActivity {
         mMsgListOnDelete = (CheckBoxPreference) findPreference(PREFERENCE_MSG_LIST_ON_DELETE);
         mMsgListOnDelete.setChecked(0 != (mAccount.getFlags() & Account.FLAGS_MSG_LIST_ON_DELETE));
                 
-        mSubjectOnFirstLine = (CheckBoxPreference) findPreference(PREFERENCE_SUBJECT_ON_FIRST_LINE);
-        mSubjectOnFirstLine.setChecked(Preferences.getPreferences(this).getSubjectOnFirstLine());
-        
         mAccountDefault = (CheckBoxPreference) findPreference(PREFERENCE_DEFAULT);
         mAccountDefault.setChecked(mAccount.mId == Account.getDefaultAccountId(this));
 
@@ -414,7 +410,6 @@ public class AccountSettings extends PreferenceActivity {
                     mAccountId, null);
         } catch (Exception e) { }
         Email.setServicesEnabled(this);
-        Preferences.getPreferences(this).setSubjectOnFirstLine(mSubjectOnFirstLine.isChecked());
     }
 
     @Override

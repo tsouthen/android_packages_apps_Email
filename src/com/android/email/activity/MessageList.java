@@ -157,6 +157,7 @@ public class MessageList extends ListActivity implements OnItemClickListener, On
     private int mFirstSelectedItemPosition = -1;
     private int mFirstSelectedItemHeight = -1;
     private boolean mCanAutoRefresh = false;
+    private boolean mUseLightTheme = false; 
 
     /* package */ static final String[] MESSAGE_PROJECTION = new String[] {
         EmailContent.RECORD_ID, MessageColumns.MAILBOX_KEY, MessageColumns.ACCOUNT_KEY,
@@ -235,6 +236,9 @@ public class MessageList extends ListActivity implements OnItemClickListener, On
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+        mUseLightTheme = false; //Preferences.getPreferences(this).getUseLightTheme();
+        setTheme(mUseLightTheme ? R.style.ThemeLightNoTitleBar: R.style.ThemeNoTitleBar);
+        
         setContentView(R.layout.message_list);
 
         mHandler = new MessageListHandler();
@@ -1728,13 +1732,12 @@ public class MessageList extends ListActivity implements OnItemClickListener, On
             EmailContent.Account acc = EmailContent.Account.restoreAccountWithId(mContext, itemView.mAccountId); 
             chipView.setBackgroundColor(acc.getAccountColor());
 
-            boolean subjectOnFirstLine = Preferences.getPreferences(mContext).getSubjectOnFirstLine();
             TextView fromView = (TextView) view.findViewById(R.id.from);
-            String text = cursor.getString(subjectOnFirstLine ? COLUMN_SUBJECT: COLUMN_DISPLAY_NAME);
+            String text = cursor.getString(COLUMN_DISPLAY_NAME);
             fromView.setText(text);
 
             TextView subjectView = (TextView) view.findViewById(R.id.subject);
-            text = cursor.getString(subjectOnFirstLine ? COLUMN_DISPLAY_NAME: COLUMN_SUBJECT);
+            text = cursor.getString(COLUMN_SUBJECT);
             subjectView.setText(text);
 
             boolean hasInvitation =
@@ -1761,13 +1764,17 @@ public class MessageList extends ListActivity implements OnItemClickListener, On
                 fromView.setTypeface(Typeface.DEFAULT);
                 fromView.setTextColor(mTextColorSecondary);
                 view.setBackgroundDrawable(context.getResources().getDrawable(
-                        R.drawable.message_list_item_background_read));
+                        mUseLightTheme ? 
+                                R.drawable.message_list_item_light_theme_background_read:
+                                    R.drawable.message_list_item_background_read));
             } else {
                 subjectView.setTypeface(Typeface.DEFAULT_BOLD);
                 fromView.setTypeface(Typeface.DEFAULT_BOLD);
                 fromView.setTextColor(mTextColorPrimary);
                 view.setBackgroundDrawable(context.getResources().getDrawable(
-                        R.drawable.message_list_item_background_unread));
+                        mUseLightTheme ?
+                                R.drawable.message_list_item_light_theme_background_unread:
+                                    R.drawable.message_list_item_background_unread));
             }
 
             ImageView selectedView = (ImageView) view.findViewById(R.id.selected);
