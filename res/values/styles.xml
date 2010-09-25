@@ -31,11 +31,13 @@
 
     <style name="ThemeNoTitleBar" parent="android:Theme.NoTitleBar">
         <item name="android:windowContentOverlay">@null</item>
-        <item name="unread_background">#000000</item>
     </style>
 
     <style name="ThemeLightNoTitleBar" parent="android:Theme.Light.NoTitleBar">
         <item name="android:windowContentOverlay">@null</item>
-        <item name="unread_background">#000000</item>
+    </style>
+    
+    <style name="lightListView" parent="android:Theme.Light">
+        <item name="android:background">#FFFFFF</item>
     </style>
 </resources>

@@ -236,7 +236,7 @@ public class MessageList extends ListActivity implements OnItemClickListener, On
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        mUseLightTheme = false; //Preferences.getPreferences(this).getUseLightTheme();
+        mUseLightTheme = true; //Preferences.getPreferences(this).getUseLightTheme();
         setTheme(mUseLightTheme ? R.style.ThemeLightNoTitleBar: R.style.ThemeNoTitleBar);
         
         setContentView(R.layout.message_list);
