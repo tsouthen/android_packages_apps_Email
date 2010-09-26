@@ -64,7 +64,7 @@ public class AccountSettings extends PreferenceActivity {
     private static final String PREFERENCE_SYNC_CONTACTS = "account_sync_contacts";
     private static final String PREFERENCE_SYNC_CALENDAR = "account_sync_calendar";
     private static final String PREFERENCE_MSG_LIST_ON_DELETE = "msg_list_on_delete";
-    private static final String PREFERENCE_SUBJECT_ON_FIRST_LINE = "subject_on_first_line";
+    private static final String PREFERENCE_USE_LIGHT_THEME = "use_light_theme";
 
     // These strings must match account_settings_vibrate_when_* strings in strings.xml
     private static final String PREFERENCE_VALUE_VIBRATE_WHEN_ALWAYS = "always";
@@ -96,6 +96,7 @@ public class AccountSettings extends PreferenceActivity {
     private CheckBoxPreference mSyncCalendar;
     private CheckBoxPreference mMsgListOnDelete;
     private ColorPreference mColor;
+    private CheckBoxPreference mUseLightTheme;
 
     /**
      * Display (and edit) settings for a specific account
@@ -240,7 +241,7 @@ public class AccountSettings extends PreferenceActivity {
             });
             topCategory.addPreference(mSyncWindow);
         }
-
+        
         mMsgListOnDelete = (CheckBoxPreference) findPreference(PREFERENCE_MSG_LIST_ON_DELETE);
         mMsgListOnDelete.setChecked(0 != (mAccount.getFlags() & Account.FLAGS_MSG_LIST_ON_DELETE));
                 
@@ -314,6 +315,9 @@ public class AccountSettings extends PreferenceActivity {
             serverCategory.removePreference(mSyncContacts);
             serverCategory.removePreference(mSyncCalendar);
         }
+
+        mUseLightTheme = (CheckBoxPreference) findPreference(PREFERENCE_USE_LIGHT_THEME);
+        mUseLightTheme.setChecked(Preferences.getPreferences(this).getUseLightTheme());
     }
 
     private void setAccountIdFromAccountManagerIntent() {
@@ -410,6 +414,7 @@ public class AccountSettings extends PreferenceActivity {
                     mAccountId, null);
         } catch (Exception e) { }
         Email.setServicesEnabled(this);
+        Preferences.getPreferences(this).setUseLightTheme(mUseLightTheme.isChecked());
     }
 
     @Override

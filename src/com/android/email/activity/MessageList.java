@@ -235,9 +235,9 @@ public class MessageList extends ListActivity implements OnItemClickListener, On
 
     @Override
     public void onCreate(Bundle icicle) {
-        super.onCreate(icicle);
-        mUseLightTheme = true; //Preferences.getPreferences(this).getUseLightTheme();
+        mUseLightTheme = Preferences.getPreferences(this).getUseLightTheme();
         setTheme(mUseLightTheme ? R.style.ThemeLightNoTitleBar: R.style.ThemeNoTitleBar);
+        super.onCreate(icicle);
         
         setContentView(R.layout.message_list);
 
@@ -1631,10 +1631,10 @@ public class MessageList extends ListActivity implements OnItemClickListener, On
             Resources resources = context.getResources();
             mAttachmentIcon = resources.getDrawable(R.drawable.ic_mms_attachment_small);
             mInvitationIcon = resources.getDrawable(R.drawable.ic_calendar_event_small);
-            mFavoriteIconOn = resources.getDrawable(R.drawable.btn_star_big_buttonless_dark_on);
-            mFavoriteIconOff = resources.getDrawable(R.drawable.btn_star_big_buttonless_dark_off);
-            mSelectedIconOn = resources.getDrawable(R.drawable.btn_check_buttonless_dark_on);
-            mSelectedIconOff = resources.getDrawable(R.drawable.btn_check_buttonless_dark_off);
+            mFavoriteIconOn = resources.getDrawable(mUseLightTheme ? R.drawable.btn_star_big_buttonless_on: R.drawable.btn_star_big_buttonless_dark_on);
+            mFavoriteIconOff = resources.getDrawable(mUseLightTheme ? R.drawable.btn_star_big_buttonless_off: R.drawable.btn_star_big_buttonless_dark_off);
+            mSelectedIconOn = resources.getDrawable(mUseLightTheme ? R.drawable.btn_check_buttonless_on: R.drawable.btn_check_buttonless_dark_on);
+            mSelectedIconOff = resources.getDrawable(mUseLightTheme ? R.drawable.btn_check_buttonless_off: R.drawable.btn_check_buttonless_dark_off);
 
             Theme theme = context.getTheme();
             TypedArray array;
